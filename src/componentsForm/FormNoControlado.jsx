@@ -9,17 +9,19 @@ const FormNoControlado = () => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        console.log('procesando')
+        console.log('procesando...')
 
-        const datos = new FormData(formulario.current)
+        const datos = new FormData(formulario.current)//current es del useRef para toar el formulario 'actual'
         //console.log(...datos.entries())
 
-        const objetoDatos = Object.fromEntries([...datos.entries()])
-        //console.log(objetoDatos)
+        const objetoDatos = Object.fromEntries([...datos.entries()])//entries de FormData,os devuelve un ARRAY con la llave y el valor. la llave es el name y el valor lo que contiene el Name
+        //object.fromEntries nos devuelve un objeto del array de llaves y valores de nuestro formulario. nos devuelve un objeto con propiedades y valores correspondientes
+        
+        
         const {todoName, todoDescripcion} = objetoDatos
 
         if(todoName.trim() === ""  || !todoDescripcion.trim()){
-          console.log('algun campo vacio')
+          console.log('algun campo está vacio, complételo')
           return
         }
 

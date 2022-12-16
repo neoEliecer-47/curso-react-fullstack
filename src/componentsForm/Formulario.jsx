@@ -13,7 +13,7 @@ const Formulario = () => {
     
     const [error, setError] = useState(false)
 
-    const handleSubmit = e => {
+    const handleSubmit = e => { //handleSubmit pocesa el formulario
         e.preventDefault()
         console.log(todo)
     const {todoName, todoDescripcion} = todo
@@ -26,13 +26,13 @@ const Formulario = () => {
     setError(false)
     }
 
-    const handleChange = e => {
+    const handleChange = e => {//handlleChange es un hook para estar pendientes de los values de nuestros inputs y elementos cuando estos cambien
         //se trae la copia del todo y le añade la del momento por lo que el usuario ingrese en los input
         
-        const {name, value, type,checked} = e.target //esto devuelve un objeto del elemento seleccionado permitiendo poder acceder a sus atributos mediante el Destructuring
+        const {name, value, type, checked} = e.target //esto devuelve un objeto del elemento seleccionado permitiendo poder acceder a sus atributos mediante el Destructuring
         
         setTodo({
-            ...todo, [name]: type === 'checkbox' 
+            ...todo, [name]: type === 'checkbox' //al ser un objeto, no acepta puntos y caracteres extraños en las propiedades, por eso el uso de corchetes y asi lo hacemos dinamico con el event delegation
                                     ? checked 
                                     : value
         })
@@ -41,7 +41,7 @@ const Formulario = () => {
             ...prev, 
             [e.target.name]: e.target.value  
         }))*/
-
+        //corchetes para que retorno implicito
 
         /*setTodo({
             ...todo, [e.target.name]: e.target.type === 'checkbox' 
@@ -56,11 +56,11 @@ const Formulario = () => {
     )
     
     
-    return (
+    return (//return con parentesis es para devolver un unico elemento, por eso se usa un contenedor para encerrar todo o un fragment si no quremos añadir otro nodo y todo lo que contiene a nuestro DOM
     <>
-        <h2>No controlado</h2>
+        <h2>controlado</h2>
         
-       {error && <PintarError />} {/* como devolvia null por ser un solo statement. si condicional 'error' es true haz lo siguiente ---> */}
+       {error && <PintarError />} {/* como devolvia null por ser un solo statement. si condicional 'error' es true haz lo siguiente ---> pero solo si hay un solo elemento */}
         
         <form  onSubmit={handleSubmit}>
             <input
